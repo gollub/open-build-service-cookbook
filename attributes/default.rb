@@ -41,6 +41,7 @@ default['open-build-service']['worker']['cache_size'] = ""
 default['open-build-service']['worker']['instances'] = "0"
 default['open-build-service']['worker']['jobs'] = "1"
 default['open-build-service']['worker']['lvm']['vg'] = 'OBS'
+default['open-build-service']['worker']['lvm']['vg_devices'] = []
 default['open-build-service']['worker']['nr_hugepages'] = 0
 default['open-build-service']['worker']['storage_autosetup'] = 'false'
 default['open-build-service']['worker']['use_tmpfs'] = 'false'

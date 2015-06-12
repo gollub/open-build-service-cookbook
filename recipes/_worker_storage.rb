@@ -32,7 +32,7 @@ end
 
 lvm_volume_group worker['lvm']['vg'] do
   physical_volumes worker['lvm']['vg_devices']
-  only_if { worker['lvm'].attribute?('vg_devices') }
+  only_if { worker['lvm']['vg_devices'].any? }
 end
 
 # create worker cache
