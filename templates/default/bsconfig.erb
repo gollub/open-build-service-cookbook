@@ -1,0 +1,51 @@
+#
+# The following parameters are set via configuration.xml:
+#  $obsname
+#  $repodownload
+#
+
+<% if !node['open-build-service']['gpg_standard_key'].empty? -%>
+our $gpg_standard_key = "<%= node['open-build-service']['gpg_standard_key'] %>";
+<% end -%>
+
+<% if !node['open-build-service']['repodownload'].empty? -%>
+our $repodownload = "<%= node['open-build-service']['repodownload'] %>";
+<% end -%>
+
+<% if !node['open-build-service']['notification_plugin'].empty? -%>
+our $notification_plugin = "<%= node['open-build-service']['notification_plugin'] %>";
+<% end -%>
+
+<% if !node['open-build-service']['signer']['path'].empty? -%>
+our $sign = "<%= node['open-build-service']['signer']['path'] %>";
+<% end -%>
+
+<% if !node['open-build-service']['keyfile'].empty? -%>
+our $keyfile = "<%= get_keyfile %>";
+<% end -%>
+
+<% if !node['open-build-service']['source_service']['maxchild'].nil? -%>
+our $service_maxchild = <%= node['open-build-service']['source_service']['maxchild'] %>;
+<% end -%>
+
+<% if !node['open-build-service']['source_service']['workdir']['path'].nil? -%>
+our $servicetempdir = "<%= node['open-build-service']['source_service']['workdir']['path'] %>";
+<% end -%>
+
+<% if !node['open-build-service']['source_service']['servicedir'].nil? -%>
+our $servicedir = "<%= node['open-build-service']['source_service']['servicedir'] %>";
+<% end -%>
+
+<% if !node['open-build-service']['source_service']['serviceroot'].nil? -%>
+our $serviceroot = "<%= node['open-build-service']['source_service']['serviceroot'] %>";
+<% end -%>
+
+<% if node['open-build-service']['dispatch_adjust'] != nil %>
+our $dispatch_adjust = [
+<% node['open-build-service']['dispatch_adjust'].each do |prj, value| %>
+  '<%= "#{prj}" %>' => <%= "#{value}" %>,
+<% end %>
+];
+<% end %>
+
+1;

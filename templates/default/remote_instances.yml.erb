@@ -1,0 +1,8 @@
+<% if node['open-build-service']['frontend']['remote_instances'] != nil %>
+<% node['open-build-service']['frontend']['remote_instances'].each do |prj, value| %>
+<%= "#{prj}:" %>
+  title: <%= "#{value['title']}" %>
+  description: <%= "#{value['description']}" %>
+  remoteurl: <%= "#{value['remoteurl']}" %>
+<% end %>
+<% end %>

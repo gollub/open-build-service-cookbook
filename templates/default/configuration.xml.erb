@@ -1,0 +1,24 @@
+<configuration>
+  <title><%= node['open-build-service']['frontend']['title'] %></title>
+  <description><%= node['open-build-service']['frontend']['description'] %></description>
+  <name><%= node['open-build-service']['frontend']['name'] %></name>
+  <anonymous>on</anonymous>
+  <registration>allow</registration>
+  <default_access_disabled>off</default_access_disabled>
+  <allow_user_to_create_home_project>on</allow_user_to_create_home_project>
+  <disallow_group_creation>off</disallow_group_creation>
+  <change_password>on</change_password>
+  <hide_private_options>off</hide_private_options>
+  <gravatar>on</gravatar>
+  <enforce_project_keys>on</enforce_project_keys>
+  <download_on_demand>on</download_on_demand>
+  <download_url><%= node['open-build-service']['repodownload'] %></download_url>
+  <obs_url>https://<%= node['open-build-service']['frontend']['server_name'] %></obs_url>
+  <admin_email><%= node['open-build-service']['frontend']['admin_email'] %></admin_email>
+  <cleanup_empty_projects>on</cleanup_empty_projects>
+  <disable_publish_for_branches>on</disable_publish_for_branches>
+  <schedulers>
+    <arch>i586</arch>
+    <arch>x86_64</arch>
+  </schedulers>
+</configuration>

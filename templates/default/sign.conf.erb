@@ -1,0 +1,18 @@
+## for build service host
+<% if !node['open-build-service']['signer']['signd_host'].empty? -%>
+server: <%= node['open-build-service']['signer']['signd_host'] %>
+<% end -%>
+<% if !node['open-build-service']['signer']['user'].empty? -%>
+user: <%= node['open-build-service']['signer']['user'] %>
+<% end -%>
+<% if !node['open-build-service']['signer']['allowuser'].empty? -%>
+allowuser: <%= node['open-build-service']['signer']['allowuser'] %>
+<% end -%>
+
+## for sign server
+<% if !node['open-build-service']['signd']['allow'].empty? -%>
+allow: <%= node['open-build-service']['signd']['allow'] %>
+<% end -%>
+<% if !node['open-build-service']['signd']['phrases_dir'].empty? -%>
+phrases: <%= node['open-build-service']['signd']['phrases_dir'] %>
+<% end -%>

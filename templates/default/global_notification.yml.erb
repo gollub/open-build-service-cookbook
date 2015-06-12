@@ -1,0 +1,13 @@
+<% 
+i = 0
+node['open-build-service']['frontend']['global_notification'].each do |event, value|
+   value.each do |role_key, role_value|
+%>
+<%= "event#{i}:" %>
+  eventtype: <%= "Event::#{event}" %>
+  receiver_role: <%= "#{role_key}" %>
+  receive: <%= "#{role_value}" %>
+<%
+     i += 1
+   end
+end %>

@@ -1,0 +1,13 @@
+# Build Results
+Listen <%= node['open-build-service']['repo_server']['port'] %>
+
+<VirtualHost <%= node['open-build-service']['repo_server']['listen_address'] %>:<%= node['open-build-service']['repo_server']['port'] %>>
+        # The resulting repositories
+        DocumentRoot  "/srv/obs/repos"
+
+        <Directory /srv/obs/repos>
+           Options Indexes FollowSymLinks
+           Allow from all
+           Require all granted
+        </Directory>
+</VirtualHost>

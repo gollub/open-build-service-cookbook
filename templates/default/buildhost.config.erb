@@ -1,0 +1,11 @@
+OBS_WORKER_DIRECTORY="/var/cache/obs/worker"
+OBS_REPO_SERVERS="<%= get_repo_servers %>"
+OBS_CACHE_DIR="/var/cache/obs/worker/cache"
+OBS_CACHE_SIZE="<%= worker['cache_size'] %>"
+OBS_WORKER_INSTANCES="<%= worker['instances'] %>"
+OBS_WORKER_JOBS="<%= worker['jobs'] %>"
+OBS_INSTANCE_MEMORY="<%= worker['instance_memory'] %>"
+<% if worker['nr_hugepages'] > 0 -%>
+OBS_VM_USE_HUGETLBFS="/dev/hugepages"
+<% end -%>
+OBS_VM_USE_TMPFS="<%= worker['use_tmpfs'] == 'true' ? 'yes' : '' %>"
