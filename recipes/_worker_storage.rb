@@ -30,10 +30,9 @@ service 'obsstoragesetup' do
   action [ :disable, :stop ]
 end
 
-if worker['lvm'].attribute?('vg_devices')
-  lvm_volume_group worker['lvm']['vg'] do
-    physical_volumes worker['lvm']['vg_devices']
-  end
+lvm_volume_group worker['lvm']['vg'] do
+  physical_volumes worker['lvm']['vg_devices']
+  only_if { worker['lvm'].attribute?('vg_devices') }
 end
 
 # create worker cache

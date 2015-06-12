@@ -43,7 +43,7 @@ our $serviceroot = "<%= node['open-build-service']['source_service']['serviceroo
 <% if node['open-build-service']['dispatch_adjust'] != nil %>
 our $dispatch_adjust = [
 <% node['open-build-service']['dispatch_adjust'].each do |prj, value| %>
-  '<%= "#{prj}" %>' => <%= "#{value}" %>,
+  '<%= prj %>' => <%= value %>,
 <% end %>
 ];
 <% end %>
