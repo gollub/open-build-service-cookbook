@@ -25,16 +25,14 @@ include_recipe 'open-build-service::_sysconfig-obs-server'
   end
 end
 
-if node['open-build-service']['worker']['kvm'] == true
-  package 'kvm' do
-    action :install
-  end
+package 'kvm' do
+  action :install
+  only_if { node['open-build-service']['worker']['kvm'] == true }
 end
 
-if !node['open-build-service']['worker']['kernel_package'].empty?
-  package node['open-build-service']['worker']['kernel_package'] do
-    action :install
-  end
+package node['open-build-service']['worker']['kernel_package'] do
+  action :install
+  only_if { !node['open-build-service']['worker']['kernel_package'].empty? }
 end
 
 # this is for the initial creation

@@ -26,7 +26,7 @@ module WorkerHelper
     return "" if
       node['open-build-service']['src_server']['server_name'].nil? or
       node['open-build-service']['src_server']['server_name'].empty? or
-      node[:fqdn] == node['open-build-service']['src_server']['server_name']
+      node['fqdn'] == node['open-build-service']['src_server']['server_name']
 
     return "#{node['open-build-service']['src_server']['server_name']}:#{node['open-build-service']['src_server']['port']}"
   end
@@ -37,18 +37,19 @@ module WorkerHelper
     return "" if
       node['open-build-service']['repo_server']['server_name'].nil? or
       node['open-build-service']['repo_server']['server_name'].empty? or
-      node[:fqdn] == node['open-build-service']['repo_server']['server_name']
+      node['fqdn'] == node['open-build-service']['repo_server']['server_name']
 
     return "#{node['open-build-service']['repo_server']['server_name']}:5252"
   end
 
   def lvm_vg_exists?(name)
-    result = `vgs --noheadings #{name} 2>/dev/null`
-    if $?.success?
-      Chef::Log.debug("LVM volume group \"#{name}\" exists: #{result}")
+    cmd = Mixlib::ShellOut.new("vgs --noheadings #{name}")
+    cmd.run_command
+    if cmd.stderr.empty?
+      Chef::Log.debug("LVM volume group \"#{name}\" exists: #{cmd.stdout}")
       true
     else
-      Chef::Log.debug("LVM volume group \"#{name}\" doesn't exist: #{result}")
+      Chef::Log.debug("LVM volume group \"#{name}\" doesn't exist: #{cmd.stderr}")
       false
     end
   end
