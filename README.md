@@ -36,20 +36,43 @@ Attributes
 
 Usage
 -----
-#### open-build-service::....
+#### open-build-service
 
-Just include `open-build-service` in your node's `run_list`:
+Add open-build-service as cookbook into your Cheffile (or alternative files for
+other cookbook management systems).
+
+You need to generate GPG keys for the OBS signer as described on
+https://en.opensuse.org/openSUSE:Build_Service_Signer#Set_up_the_GPG_key
+
+And put those keys in an encrypted data-bag.
+
+For testing/demo purposes you can run this:
+
+```bash
+$ ./cookbooks/open-build-service/examples/gpg/gpg_keys.sh generate
+[...]
+I: Next step is to create the obs_gpgkeys databage with following commands:
+openssl rand -base64 512 | tr -d '\r\n' > ~/.chef/your_databag_key
+echo 'encrypted_data_bag_secret "#{home_dir}/.chef/your_databag_key"' >> .chef/knife.rb
+knife data bag create obs_gpgkeys
+knife data bag --secret-file ~/.chef/your_databag_key from file obs_gpgkeys cookbooks/open-build-service/examples/gpg/obs_gpg_keys/signd_public_key.json
+knife data bag --secret-file ~/.chef/your_databag_key from file obs_gpgkeys cookbooks/open-build-service/examples/gpg/obs_gpg_keys/signd_private_key.json
+knife data bag --secret-file ~/.chef/your_databag_key from file obs_gpgkeys cookbooks/open-build-service/examples/gpg/obs_gpg_keys/signd_key_phrase.json
+
+I: Suggesting following initial node declaration:
+```
+
 
 ```json
 {
   "open-build-service": {
     "signer": {
-      "user": "obsrun@build.example.com"
+      "user": "defaultkey@localobs"
     },
     "signd": {
       "keypairs": {
-        "obsrun@build.example.com": {
-          "bag": "gpgkeys_data_bag",
+        "defaultkey@localobs": {
+          "bag": "obs_gpgkeys",
           "private_key": {
             "item": "signd_private_key"
           },
@@ -61,46 +84,7 @@ Just include `open-build-service` in your node's `run_list`:
           }
         }
       }
-    },
-    "worker": {
-      "kvm": true,
-      "kernel_package": "kernel-obs-build",
-      "vm_type": "kvm",
-      "vm_kernel": "/.build.kernel.kvm",
-      "vm_initrd": "/.build.initrd.kvm"
-    },
-    "source_services": ["download_url"],
-	"frontend" : {
-            "remote_instances": {
-               "openSUSE": {
-                  "title": "openSUSE.org",
-                  "description": "Public OpenSUSE OBS instance",
-                  "remoteurl": "https:/api.opensuse.org/public"
-                }
-            },
-            "global_notification": {
-               "BuildFail": {
-                  "bugowner": 1,
-                  "maintainer": 1 
-                }
-             },
-	    "ssl_key": {
-		"source": "data-bag",
-		"bag": "ssl_data_bag",
-		"item": "key",
-		"item_key": "content",
-		"encrypted": true
-	    },
-	    "ssl_cert": {
-		"source": "data-bag",
-		"bag": "ssl_data_bag",
-		"item": "cert",
-		"item_key": "content",
-		"encrypted": true
-	    }
-	}
-	    }
-	}
+    }
   },
   "run_list": [
         "recipe[open-build-service::source_server]",
