@@ -57,3 +57,4 @@ default['open-build-service']['worker']['directory'] = ""
 
 default['open-build-service']['publisher']['publishedhook_use_regex'] = 'false'
 default['open-build-service']['publisher']['publishedhook'] = nil
+default['open-build-service']['publisher']['stageserver'] = []

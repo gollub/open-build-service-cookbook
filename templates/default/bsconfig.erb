@@ -60,4 +60,12 @@ our $publishedhook = {
 };
 <% end %>
 
+<% if node['open-build-service']['publisher']['stageserver'] != nil %>
+our $stageserver = [
+<% node['open-build-service']['publisher']['stageserver'].each do |prj, stageserver_url| %>
+  '<%= prj %>' => '<%= stageserver_url %>',
+<% end %>
+];
+<% end %>
+
 1;
