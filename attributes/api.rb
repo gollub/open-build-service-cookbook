@@ -42,6 +42,7 @@ default['open-build-service']['frontend']['ssl_cert']['source'] = 'self-signed'
 default['open-build-service']['frontend']['ssl_key']['source'] = 'self-signed'
 default['open-build-service']['frontend']['ca_cert_path'] = nil
 default['open-build-service']['frontend']['ca_key_path'] = nil 
+default['open-build-service']['frontend']['global_notification'] = []
 
 default['open-build-service']['repo_server']['port'] = '82'
 default['open-build-service']['repo_server']['listen_address'] = '*'

@@ -95,6 +95,7 @@ template 'global_notification.yml' do
   group "obsrun"
   mode "0644"
   notifies :run, 'execute[rake_setup_global_notification]'
+  only_if { node['open-build-service']['frontend']['global_notification'].any? }
 end
 
 cookbook_file 'remote_instance.rake' do
