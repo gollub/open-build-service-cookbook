@@ -39,6 +39,7 @@ service 'obssignd' do
 end
 
 directory node['open-build-service']['signd']['phrases_dir'] do
+  recursive true
   owner "root" 
   group "root"
 end
