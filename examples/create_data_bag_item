@@ -1,0 +1,16 @@
+#!/usr/bin/knife exec
+
+filename = ARGV[2]
+data_bag_item = ARGV[3]
+
+content = File.read(filename)
+
+bag_item = { "id" => data_bag_item }
+bag_item[:filename] = File.basename(filename)
+bag_item[:content] = content
+
+File.open("#{data_bag_item}.json", 'w') do |f|
+  f.print bag_item.to_json
+end
+
+exit 0
