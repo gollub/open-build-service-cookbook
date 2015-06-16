@@ -113,6 +113,7 @@ template 'remote_instances.yml' do
   group "obsrun"
   mode "0644"
   notifies :run, 'execute[rake_setup_remote_instances]'
+  only_if { node['open-build-service']['frontend']['remote_instances'].any? }
 end
 
 cookbook_file 'admin_password.rake' do
