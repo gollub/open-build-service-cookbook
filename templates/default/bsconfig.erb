@@ -48,4 +48,16 @@ our $dispatch_adjust = [
 ];
 <% end %>
 
+<% if node['open-build-service']['publisher']['publishedhook_use_regex'] == 'true' -%>
+our $publishedhook_use_regex = 1;
+<% end -%>
+
+<% if node['open-build-service']['publisher']['publishedhook'] != nil %>
+our $publishedhook = {
+<% node['open-build-service']['publisher']['publishedhook'].each do |prj, hook| %>
+  '<%= prj %>' => '<%= hook %>',
+<% end %>
+};
+<% end %>
+
 1;
