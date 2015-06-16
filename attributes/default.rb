@@ -53,3 +53,4 @@ default['open-build-service']['worker']['kernel_package'] = ''
 default['open-build-service']['worker']['generate_initrd'] = 'false'
 default['open-build-service']['worker']['kvm'] = 'false'
 default['open-build-service']['worker']['use_slp'] = 'true'
+default['open-build-service']['worker']['directory'] = ""
