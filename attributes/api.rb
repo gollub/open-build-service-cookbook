@@ -27,6 +27,7 @@ default['open-build-service']['frontend']['mysql_service_name'] = 'obs'
 default['open-build-service']['frontend']['mysql_port'] = '53306'
 default['open-build-service']['frontend']['mysql_password'] = 'opensuse'
 default['open-build-service']['frontend']['admin_email'] = "root@#{node['open-build-service']['server_name']}"
+default['open-build-service']['frontend']['cleanup_after_days'] = nil
 default['open-build-service']['frontend']['initial_admin_pw'] = "opensuse"
 default['open-build-service']['frontend']['port'] = '443'
 default['open-build-service']['frontend']['listen_address'] = '*'

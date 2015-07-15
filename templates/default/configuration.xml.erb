@@ -16,6 +16,9 @@
   <obs_url>https://<%= node['open-build-service']['frontend']['server_name'] %></obs_url>
   <admin_email><%= node['open-build-service']['frontend']['admin_email'] %></admin_email>
   <cleanup_empty_projects>on</cleanup_empty_projects>
+<% if node['open-build-service']['frontend']['cleanup_after_days'] != nil -%>
+  <cleanup_after_days><%= node['open-build-service']['frontend']['cleanup_after_days'] %></cleanup_after_days>
+<% end -%>
   <disable_publish_for_branches>on</disable_publish_for_branches>
   <schedulers>
     <arch>i586</arch>
