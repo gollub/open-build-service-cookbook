@@ -137,7 +137,7 @@ end
 
 node.set['apache']['default_site_enabled'] = false
 
-%w{ alias expires rewrite proxy proxy_http xforward headers socache_shmcb ssl }.each do |n|
+%w{ access_compat alias expires rewrite proxy proxy_http xforward headers socache_shmcb ssl }.each do |n|
   apache_module n
 end
 
