@@ -4,8 +4,8 @@ production:
   username: root
   password: <%= node['open-build-service']['frontend']['mysql_password'] %>
   encoding: utf8
-  timeout: 15
-  pool: 30
+  timeout: <%= node['open-build-service']['frontend']['mysql_timeout'] %>
+  pool: <%= node['open-build-service']['frontend']['mysql_pool'] %>
 <% if !node['open-build-service']['frontend']['mysql_service_name'].empty? -%>
   socket: /var/run/mysql-<%= node['open-build-service']['frontend']['mysql_service_name'] %>/mysqld.sock
 <% end -%>

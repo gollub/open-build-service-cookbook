@@ -26,6 +26,8 @@ default['open-build-service']['frontend']['description'] = '&lt;p class=&quot;de
 default['open-build-service']['frontend']['mysql_service_name'] = 'obs'
 default['open-build-service']['frontend']['mysql_port'] = '53306'
 default['open-build-service']['frontend']['mysql_password'] = 'opensuse'
+default['open-build-service']['frontend']['mysql_timeout'] = '10'
+default['open-build-service']['frontend']['mysql_pool'] = '30'
 default['open-build-service']['frontend']['admin_email'] = "root@#{node['open-build-service']['server_name']}"
 default['open-build-service']['frontend']['cleanup_after_days'] = nil
 default['open-build-service']['frontend']['initial_admin_pw'] = "opensuse"
