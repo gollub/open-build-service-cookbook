@@ -1,0 +1,3 @@
+[mysqld]
+max_connections = <%= node['open-build-service']['mysqld']['max_connections'] %>
+open_files_limit = <%= node['open-build-service']['mysqld']['open_files_limit'] %>
