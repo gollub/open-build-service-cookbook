@@ -72,7 +72,8 @@ else
     action [:create, :start]
   end
 
-  mysql_config node['open-build-service']['frontend']['mysql_service_name'] do
+  mysql_config "obs-settings" do
+    instance node['open-build-service']['frontend']['mysql_service_name']
     source 'mysql-obs-settings.erb'
     notifies :restart, "mysql_service[#{node['open-build-service']['frontend']['mysql_service_name']}]"
     action :create
