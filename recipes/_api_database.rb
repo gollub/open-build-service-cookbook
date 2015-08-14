@@ -71,6 +71,12 @@ else
     port node['open-build-service']['frontend']['mysql_port']
     action [:create, :start]
   end
+
+  mysql_config node['open-build-service']['frontend']['mysql_service_name'] do
+    source 'mysql-obs-settings.erb'
+    notifies :restart, "mysql_service[#{node['open-build-service']['frontend']['mysql_service_name']}]"
+    action :create
+  end
 end
 
 template "database.yml" do
