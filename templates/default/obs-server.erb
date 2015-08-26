@@ -268,7 +268,7 @@ OBS_VM_INITRD="<%= worker['vm_initrd'] %>"
 ## Config:      OBS
 #
 #
-OBS_VM_DISK_AUTOSETUP_ROOT_FILESIZE="8192"
+OBS_VM_DISK_AUTOSETUP_ROOT_FILESIZE="<%= worker['vm_disk_root_filesize'] %>"
 
 ## Path:        Applications/OBS
 ## Description: Autosetup for XEN/KVM disk (swap) - Filesize in MB
@@ -277,7 +277,7 @@ OBS_VM_DISK_AUTOSETUP_ROOT_FILESIZE="8192"
 ## Config:      OBS
 #
 #
-OBS_VM_DISK_AUTOSETUP_SWAP_FILESIZE="1024"
+OBS_VM_DISK_AUTOSETUP_SWAP_FILESIZE="<%= worker['vm_disk_swap_filesize'] %>"
 
 ## Path:        Applications/OBS
 ## Description: Filesystem to use for autosetup {none,ext4}=ext4, ext3=ext3
