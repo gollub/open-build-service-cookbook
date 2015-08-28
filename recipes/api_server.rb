@@ -154,7 +154,7 @@ node.set['passenger']['install_method'] = 'package'
 node.set['passenger']['package']['name'] = 'rubygem-passenger-apache2'
 node.set['passenger']['ruby_bin'] = '/usr/bin/ruby'
 node.set['passenger']['module_path'] = '/usr/lib64/apache2/mod_passenger.so'
-node.set['passenger']['root_path'] = node['open-build-service']['frontend']['passenger']
+node.set['passenger']['root_path'] = node['open-build-service']['frontend']['passenger']['root_path']
 
 include_recipe "passenger_apache2"
 include_recipe 'passenger_apache2::mod_rails'
