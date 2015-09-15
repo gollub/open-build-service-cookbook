@@ -89,8 +89,8 @@ template 'distribution.xml' do
   notifies :run, 'execute[rake_load_distribution_xml]'
 end
 
-cookbook_file 'configuration.rake' do
-  path '/srv/www/obs/api/lib/tasks/configuration.rake'
+cookbook_file 'distribution.rake' do
+  path '/srv/www/obs/api/lib/tasks/distribution.rake'
   mode '0644'
   owner 'root'
   group 'root'
