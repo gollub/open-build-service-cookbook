@@ -1,0 +1,16 @@
+<% if node['open-build-service']['frontend']['distributions'] != nil %>
+<distributions>
+<% node['open-build-service']['frontend']['distributions'].each do |version, value| %>
+  <distribution vendor="<%= value['vendor'] %>" version="<%= "#{version}" %>">
+    <name><%= value['name'] %></name>
+    <project><%= value['project'] %></project>
+    <reponame><%= value['reponame'} %></reponame>
+    <repository><%= value['repository'] %></repository>
+    <link><%= value['link'] %></link>
+    <% value['architecture'].each do |arch| %>
+    <architecture><%= "#{arch}" %></architecture>
+    <% end %>
+  </distribution>
+  <% end %>
+</distributions>
+<% end %>

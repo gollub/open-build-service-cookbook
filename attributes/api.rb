@@ -50,6 +50,7 @@ default['open-build-service']['frontend']['ca_cert_path'] = nil
 default['open-build-service']['frontend']['ca_key_path'] = nil 
 default['open-build-service']['frontend']['global_notification'] = []
 default['open-build-service']['frontend']['remote_instances'] = []
+default['open-build-service']['frontend']['distributions'] = []
 
 default['open-build-service']['repo_server']['port'] = '82'
 default['open-build-service']['repo_server']['listen_address'] = '*'

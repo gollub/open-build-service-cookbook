@@ -80,6 +80,24 @@ cookbook_file 'configuration.rake' do
   action :create_if_missing
 end
 
+template 'distribution.xml' do
+  path '/srv/www/obs/api/config/distribution.xml'
+  source "distribution.xml.erb"
+  owner "obsrun"
+  group "obsrun"
+  mode "0644"
+  notifies :run, 'execute[rake_load_distribution_xml]'
+end
+
+cookbook_file 'configuration.rake' do
+  path '/srv/www/obs/api/lib/tasks/configuration.rake'
+  mode '0644'
+  owner 'root'
+  group 'root'
+  action :create_if_missing
+end
+
+
 cookbook_file 'configuration_global_notification.rake' do
   path '/srv/www/obs/api/lib/tasks/configuration_global_notification.rake'
   mode '0644'
@@ -205,6 +223,18 @@ end
 #
 execute 'rake_load_configuration_xml' do
   command 'rake load_configuration_xml[/srv/www/obs/api/config/configuration.xml]'
+  cwd '/srv/www/obs/api'
+  user node['passenger']['default_user']
+  group node['passenger']['default_group']
+  environment 'RAILS_ENV' => 'production'
+  action :nothing
+end
+
+#
+# update distribution.xml
+#
+execute 'rake_load_distribution_xml' do
+  command 'rake load_distribution_xml[/srv/www/obs/api/config/distribution.xml]'
   cwd '/srv/www/obs/api'
   user node['passenger']['default_user']
   group node['passenger']['default_group']
