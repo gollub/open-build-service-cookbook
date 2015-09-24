@@ -10,7 +10,7 @@
   <change_password>on</change_password>
   <hide_private_options>off</hide_private_options>
   <gravatar>on</gravatar>
-  <enforce_project_keys>on</enforce_project_keys>
+  <enforce_project_keys><%= node['open-build-service']['frontend']['enforce_project_keys'] %></enforce_project_keys>
   <download_on_demand>on</download_on_demand>
   <download_url><%= node['open-build-service']['repodownload'] %></download_url>
   <obs_url>https://<%= node['open-build-service']['frontend']['server_name'] %></obs_url>

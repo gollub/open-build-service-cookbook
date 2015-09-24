@@ -22,6 +22,7 @@ default['open-build-service']['server_name'] = node['fqdn'] || 'localhost'
 
 default['open-build-service']['frontend']['title'] = 'Open Build Service'
 default['open-build-service']['frontend']['name'] = 'private'
+default['open-build-service']['frontend']['enforce_project_keys'] = 'on'
 default['open-build-service']['frontend']['description'] = '&lt;p class=&quot;description&quot;&gt;The Open Build Service &lt;/p&gt;'
 default['open-build-service']['frontend']['mysql_service_name'] = 'obs'
 default['open-build-service']['frontend']['mysql_port'] = '53306'
