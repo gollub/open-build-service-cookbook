@@ -42,7 +42,7 @@ default['open-build-service']['frontend']['overview_page_hooks'] = ''
 default['open-build-service']['frontend']['external_frontend_host'] = node['open-build-service']['server_name']
 default['open-build-service']['frontend']['external_frontend_port'] = '443'
 
-default['open-build-service']['frontend']['passenger']['root_path'] = '/usr/lib64/passenger/5.0.7/'
+default['open-build-service']['frontend']['passenger']['root_path'] = '/usr/lib64/passenger/5.0.15/'
 
 default['open-build-service']['frontend']['common_name'] = node['open-build-service']['server_name']
 default['open-build-service']['frontend']['ssl_cert']['source'] = 'self-signed'
