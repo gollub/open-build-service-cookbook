@@ -39,7 +39,7 @@ end
 
 %w{ obs-source_service }.each do |package_name|
   package package_name do
-    action :install
+    action :upgrade
   end
 end
 
@@ -51,7 +51,7 @@ end
 
 node['open-build-service']['source_services'].each do |name|
   package "obs-service-#{name}" do
-    action :install
+    action :upgrade
     notifies :restart, 'service[obsservice]'
   end
 end
