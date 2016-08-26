@@ -37,7 +37,7 @@ if !node['open-build-service']['source_service']['workdir']['tmpfs']['size'].nil
 
 end
 
-%w{ obs-source_service }.each do |package_name|
+%w{ obs-source_service build }.each do |package_name|
   package package_name do
     action :upgrade
   end
