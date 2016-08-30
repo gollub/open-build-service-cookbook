@@ -40,54 +40,50 @@ end
 
 directory node['open-build-service']['signd']['phrases_dir'] do
   recursive true
-  owner "root" 
+  owner "root"
   group "root"
 end
 
-if !node['open-build-service']['signd']['keypairs'].empty?
-  node['open-build-service']['signd']['keypairs'].each do |keyid, param|
+node['open-build-service']['signd']['keypairs'].each do |keyid, param|
+  keyfile = Chef::EncryptedDataBagItem.load(param['bag'], param['private_key']['item'])
 
-    keyfile = Chef::EncryptedDataBagItem.load(param['bag'], param['private_key']['item'])
+  file "/root/#{keyfile['filename']}" do
+    content keyfile['content']
+    owner 'root'
+    group 'root'
+    mode 0600
+    notifies :run, 'execute[signd_import_private_key]'
+  end
 
-    file "/root/#{keyfile['filename']}" do
-      content keyfile['content']
-      owner 'root'
-      group 'root'
-      mode 0600
-      notifies :run, 'execute[signd_import_private_key]'
-    end
+  execute 'signd_import_private_key' do
+    command "gpg --import /root/#{keyfile['filename']}"
+    user "root"
+    group "root"
+    action :nothing
+  end
 
-    execute 'signd_import_private_key' do
-      command "gpg --import /root/#{keyfile['filename']}"
-      user "root"
-      group "root"
-      action :nothing
-    end
+  keyfile = Chef::EncryptedDataBagItem.load(param['bag'], param['public_key']['item'])
 
-    keyfile = Chef::EncryptedDataBagItem.load(param['bag'], param['public_key']['item'])
+  file "/root/#{keyfile['filename']}" do
+    content keyfile['content']
+    owner 'root'
+    group 'root'
+    mode 0600
+    notifies :run, 'execute[signd_import_public_key]'
+  end
 
-    file "/root/#{keyfile['filename']}" do
-      content keyfile['content']
-      owner 'root'
-      group 'root'
-      mode 0600
-      notifies :run, 'execute[signd_import_public_key]'
-    end
+  execute 'signd_import_public_key' do
+    command "gpg --import /root/#{keyfile['filename']}"
+    user "root"
+    group "root"
+    action :nothing
+  end
 
-    execute 'signd_import_public_key' do
-      command "gpg --import /root/#{keyfile['filename']}"
-      user "root"
-      group "root"
-      action :nothing
-    end
-
-    phrasefile = Chef::EncryptedDataBagItem.load(param['bag'], param['key_phrase']['item'])
-    file "#{node['open-build-service']['signd']['phrases_dir']}/#{keyid}" do
-      content phrasefile['content']
-      owner 'root'
-      group 'root'
-      mode 0600
-    end
-
+  phrasefile = Chef::EncryptedDataBagItem.load(param['bag'], param['key_phrase']['item'])
+  file "#{node['open-build-service']['signd']['phrases_dir']}/#{keyid}" do
+    content phrasefile['content']
+    owner 'root'
+    group 'root'
+    mode 0600
   end
 end
