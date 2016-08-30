@@ -53,4 +53,15 @@ module WorkerHelper
       false
     end
   end
+
+  def get_target_architectures
+    case node['kernel']['machine']
+    when 'x86_64'
+      return 'i586 x86_64'
+    when 'i686'
+      return 'i586'
+    else
+      return node['kernel']['machine']
+    end
+  end
 end
