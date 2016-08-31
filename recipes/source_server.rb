@@ -26,8 +26,11 @@ service 'obssrcserver' do
   action [:enable, :start]
 end
 
+Chef::Resource::Service.send(:include, ObsHelper)
+
 service 'obssigner' do
   service_name 'obssigner'
   supports restart: true, status: true
   action [:enable, :start]
+  only_if { !get_keyfile.to_s.empty? }
 end
