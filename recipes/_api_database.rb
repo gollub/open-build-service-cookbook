@@ -26,18 +26,8 @@
 # Installation
 #
 
-#mysql2_chef_gem 'default' do
-#  action :install
-#end
-include_recipe 'build-essential::default'
-
-package 'mysql-devel' do
-  action :install
-end
-
-gem_package 'mysql2' do
-  gem_binary RbConfig::CONFIG['bindir'] + '/gem'
-  version '0.3.17'
+mysql2_chef_gem 'default' do
+  provider Chef::Provider::Mysql2ChefGem::Mariadb
   action :install
 end
 
