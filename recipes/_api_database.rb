@@ -26,18 +26,8 @@
 # Installation
 #
 
-#mysql2_chef_gem 'default' do
-#  action :install
-#end
-include_recipe 'build-essential::default'
-
-package 'mysql-devel' do
-  action :install
-end
-
-gem_package 'mysql2' do
-  gem_binary RbConfig::CONFIG['bindir'] + '/gem'
-  version '0.3.17'
+mysql2_chef_gem 'default' do
+  provider Chef::Provider::Mysql2ChefGem::Mariadb
   action :install
 end
 
@@ -61,10 +51,14 @@ else
     '/mysqld.sock'
 
   mysql_client node['open-build-service']['frontend']['mysql_service_name'] do
+    package_name "mariadb-client"
+    package_version "10.0.25"
     action :create
   end
 
   mysql_service node['open-build-service']['frontend']['mysql_service_name'] do
+    package_name "mariadb"
+    package_version "10.0.25"
     initial_root_password node['open-build-service']['frontend']['mysql_password']
     bind_address '127.0.0.1'
     socket node['open-build-service']['frontend']['mysql_socket']
