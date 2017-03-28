@@ -26,10 +26,11 @@ generate() {
 	pushd $RESULTS > /dev/null
 
 	cat > $WDIR/batch << EOF
-Key-Type: DSA
-Key-Length: 1024
-Subkey-Type: ELG-E
-Subkey-Length: 1024
+Key-Type: RSA
+Key-Length: 2048
+Subkey-Type: RSA
+Subkey-Length: 2048
+Preferences: SHA256 SHA512 SHA224 SHA384 AES256 AES192 AES CAST5 ZLIB BZIP2 ZIP Uncompressed
 Name-Real: OBS
 Name-Comment: OBS key generate by open-build-service-cookbook example scripts 
 Name-Email: $KEY_ID 
