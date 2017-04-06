@@ -16,3 +16,6 @@ allow: <%= node['open-build-service']['signd']['allow'] %>
 <% if !node['open-build-service']['signd']['phrases_dir'].empty? -%>
 phrases: <%= node['open-build-service']['signd']['phrases_dir'] %>
 <% end -%>
+<% if !node['open-build-service']['signd']['hash'].empty? -%>
+hash: <%= node['open-build-service']['signd']['hash'] %>
+<% end -%>
