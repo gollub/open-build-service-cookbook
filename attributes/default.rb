@@ -57,6 +57,7 @@ default['open-build-service']['worker']['generate_initrd'] = 'false'
 default['open-build-service']['worker']['kvm'] = 'false'
 default['open-build-service']['worker']['use_slp'] = 'true'
 default['open-build-service']['worker']['directory'] = ""
+default['open-build-service']['worker']['hypervisor_package'] = 'qemu-kvm'
 
 default['open-build-service']['publisher']['publishedhook_use_regex'] = 'false'
 default['open-build-service']['publisher']['publishedhook'] = nil
