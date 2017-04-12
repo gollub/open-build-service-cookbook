@@ -40,6 +40,11 @@ our $servicedir = "<%= node['open-build-service']['source_service']['servicedir'
 our $serviceroot = "<%= node['open-build-service']['source_service']['serviceroot'] %>";
 <% end -%>
 
+<% if !node['open-build-service']['source_service']['user'].nil? -%>
+our $bsserviceuser = "<%= node['open-build-service']['source_service']['user'] %>";
+<% end -%>
+
+
 <% if node['open-build-service']['dispatch_adjust'] != nil %>
 our $dispatch_adjust = [
 <% node['open-build-service']['dispatch_adjust'].each do |prj, value| %>

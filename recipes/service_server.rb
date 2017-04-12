@@ -22,8 +22,8 @@ include_recipe 'open-build-service::_backend'
 if !node['open-build-service']['source_service']['workdir']['tmpfs']['size'].nil?
 
   directory node['open-build-service']['source_service']['workdir']['path'] do
-    owner 'root'
-    group 'root'
+    owner 'obsrun'
+    group 'obsrun'
     mode '0700'
   end
 

@@ -36,6 +36,8 @@ default['open-build-service']['source_service']['workdir']['path'] = "/var/tmp/o
 default['open-build-service']['source_service']['workdir']['tmpfs']['size'] = nil
 default['open-build-service']['source_service']['servicedir'] = nil
 default['open-build-service']['source_service']['serviceroot'] = nil
+default['open-build-service']['source_service']['user'] = 'obsrun'
+
 
 default['open-build-service']['worker']['repo_servers'] = ""
 default['open-build-service']['worker']['cache_size'] = ""
@@ -57,6 +59,7 @@ default['open-build-service']['worker']['generate_initrd'] = 'false'
 default['open-build-service']['worker']['kvm'] = 'false'
 default['open-build-service']['worker']['use_slp'] = 'true'
 default['open-build-service']['worker']['directory'] = ""
+default['open-build-service']['worker']['hypervisor_package'] = 'qemu-kvm'
 
 default['open-build-service']['publisher']['publishedhook_use_regex'] = 'false'
 default['open-build-service']['publisher']['publishedhook'] = nil
