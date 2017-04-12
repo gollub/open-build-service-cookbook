@@ -36,6 +36,8 @@ default['open-build-service']['source_service']['workdir']['path'] = "/var/tmp/o
 default['open-build-service']['source_service']['workdir']['tmpfs']['size'] = nil
 default['open-build-service']['source_service']['servicedir'] = nil
 default['open-build-service']['source_service']['serviceroot'] = nil
+default['open-build-service']['source_service']['user'] = 'obsrun'
+
 
 default['open-build-service']['worker']['repo_servers'] = ""
 default['open-build-service']['worker']['cache_size'] = ""
