@@ -26,6 +26,8 @@
 # Installation
 #
 
+node.override['mariadb']['install']['prefer_os_package'] = true
+
 mysql2_chef_gem_mariadb 'default' do
   action :install
 end
