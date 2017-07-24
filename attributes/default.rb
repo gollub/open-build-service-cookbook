@@ -37,6 +37,7 @@ default['open-build-service']['source_service']['workdir']['tmpfs']['size'] = ni
 default['open-build-service']['source_service']['servicedir'] = nil
 default['open-build-service']['source_service']['serviceroot'] = nil
 default['open-build-service']['source_service']['user'] = 'obsrun'
+default['open-build-service']['source_service']['tar_scm']['cachedirectory'] = ""
 
 
 default['open-build-service']['worker']['repo_servers'] = ""
