@@ -34,3 +34,34 @@ service 'obssigner' do
   action [:enable, :start]
   only_if { !get_keyfile.to_s.empty? }
 end
+
+template 'tar_scm' do
+  path '/etc/obs/services/tar_scm'
+  source "tar_scm.erb"
+  owner "root"
+  group "root"
+  mode "0644"
+end
+
+if node['open-build-service']['source_service']['tar_scm']['cachedirectory'] != ""
+  directory node['open-build-service']['source_service']['tar_scm']['cachedirectory'] do
+    owner 'obsrun'
+    group 'obsrun'
+    mode '0755'
+  end
+  directory node['open-build-service']['source_service']['tar_scm']['cachedirectory'] + '/repo' do
+    owner 'obsrun'
+    group 'obsrun'
+    mode '0755'
+  end
+  directory node['open-build-service']['source_service']['tar_scm']['cachedirectory'] + '/repourl' do
+    owner 'obsrun'
+    group 'obsrun'
+    mode '0755'
+  end
+  directory node['open-build-service']['source_service']['tar_scm']['cachedirectory'] + '/incoming' do
+    owner 'obsrun'
+    group 'obsrun'
+    mode '0755'
+  end
+end
