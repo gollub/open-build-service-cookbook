@@ -41,6 +41,7 @@ default['open-build-service']['source_service']['tar_scm']['cachedirectory'] = "
 
 
 default['open-build-service']['worker']['repo_servers'] = ""
+default['open-build-service']['worker']['cache_dir'] = "/var/cache/obs/worker/cache"
 default['open-build-service']['worker']['cache_size'] = ""
 default['open-build-service']['worker']['instances'] = "0"
 default['open-build-service']['worker']['jobs'] = "1"
