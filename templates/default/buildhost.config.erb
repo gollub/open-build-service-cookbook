@@ -1,6 +1,6 @@
 OBS_WORKER_DIRECTORY="/var/cache/obs/worker"
 OBS_REPO_SERVERS="<%= get_repo_servers %>"
-OBS_CACHE_DIR="/var/cache/obs/worker/cache"
+OBS_CACHE_DIR="<%= worker['cache_dir'] %>"
 OBS_CACHE_SIZE="<%= worker['cache_size'] %>"
 OBS_WORKER_INSTANCES="<%= worker['instances'] %>"
 OBS_WORKER_JOBS="<%= worker['jobs'] %>"
